@@ -162,7 +162,6 @@ function apply_button_Callback(hObject, eventdata, handles)
     I = Io * exp(1i*w*t);
     k = @(R,z) ( R.^3 ./ (((R.^2 + (L/2 - z).^2).^(1.5)).*((R.^2 + (L/2 + z).^2).^(1.5))));
     k_int = integral2(k, 0, Inf, 0, Inf);
-    % k_int = integral2(k, 0, Inf, -Inf, Inf);
 
 
     %% Data Base with materials
@@ -180,74 +179,83 @@ function apply_button_Callback(hObject, eventdata, handles)
     materials{9,1}  = "Manganese(Mn)";   materials{9,2}  = 1;                 materials{9,3}  = 6.94*10^5;
     materials{10,1} = "Cooper(Cu)";      materials{10,2} = 1.25*10^(-6);      materials{10,3} = 5.96*10^7;
 
-    materials{11,1} = "Nothing";         materials{11,2}  = 1;                materials{11,3}  = 1;
+    materials{11,1} = "Air";             materials{11,2}  = 1;                materials{11,3}  = 1;
 
 
 
     %% x ground function
     x = zeros(1,1700);
-
+    
+    rand_int = randi(10);
     for i = 1:200
+        
         if mod(i,200) <= 100
             x(i) = 11;
         else
-            x(i) = 5;
+            x(i) = rand_int;
         end
     end
 
+    rand_int = randi(10);
     for i = 201:400
         if mod(i,200) <= 100
             x(i) = 11;
         else
-            x(i) = 6;
+            x(i) = rand_int;
         end
     end
 
+    rand_int = randi(10);
     for i = 401:600
         if mod(i,200) <= 100
             x(i) = 11;
         else
-            x(i) = 1;
+            x(i) = rand_int;
         end
     end
 
+    rand_int = randi(10);
     for i = 601:800
         if mod(i,200) <= 100
             x(i) = 11;
         else
-            x(i) = 4;
+            x(i) = rand_int;
         end
     end
 
+    rand_int = randi(10);
     for i = 801:1000
         if mod(i,200) <= 100
             x(i) = 11;
         else
-            x(i) = 2;
+            x(i) = rand_int;
         end
     end
 
+    rand_int = randi(10);
     for i = 1001:1200
         if mod(i,200) <= 100
             x(i) = 11;
         else
-            x(i) = 3;
+            x(i) = rand_int;
         end
     end
 
+    rand_int = randi(10);
     for i = 1201:1400
         if mod(i,200) <= 100
             x(i) = 11;
         else
-            x(i) = 1;
+            x(i) = rand_int;
         end
     end
 
+    rand_int = randi(10);
     for i = 1401:1700
         if mod(i,200) <= 100
             x(i) = 11;
         elseif mod(i,200) <= 200
-            x(i) = 7;
+            x(i) = rand_int;
         else
             x(i) = 11;
         end
@@ -255,7 +263,7 @@ function apply_button_Callback(hObject, eventdata, handles)
 
 
 
-    %% Experiment
+    %% Simulation
     resistivities = zeros(1,length(x));
     estimated_elements = zeros(1,length(x));
     errors = zeros(1,length(x));
